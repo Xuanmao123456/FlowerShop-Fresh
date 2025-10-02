@@ -20,3 +20,13 @@ nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
 
 // Automatic carousel (optional)
 setInterval(() => goToSlide(currentIndex + 1), 5000);
+
+
+
+
+
+
+//Automatic carousel logic
+setInterval(() => {
+  document.querySelector('.next').click();
+}, 5000);
