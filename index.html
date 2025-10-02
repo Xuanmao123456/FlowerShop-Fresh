@@ -2,22 +2,78 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>鲜花礼品店</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Huayang Praise - Flower Gift Shop</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>鲜花礼品店-为您传递美好</header>
-  <main>
-    <!-- 后续添加轮播图、商品列表等内容 -->
-  </main>
-<main>
-  <div class="carousel">
-    <!-- 轮播图内容后续添加 -->
-  </div>
-  <div class="product-list">
-    <!-- 商品列表后续添加 -->
-  </div>
-</main>
+  <!-- 导航栏 -->
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">Floral Celebration</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#">Homepage</a></li>
+          <li><a href="#">Flower classification</a></li>
+          <li><a href="#">Gift Package</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </nav>
+      <a href="pages/cart.html" class="cart-icon">shopping cart</a>
+    </div>
+  </header>
+
+  <!-- 轮播图 -->
+  <section class="carousel">
+    <div class="carousel-wrapper">
+      <img src="images/slide1.jpg" alt="Romantic Rose Gift Box" class="slide active">
+      <img src="images/slide2.jpg" alt="Fresh Lily Bouquet" class="slide">
+      <img src="images/slide3.jpg" alt="Holiday Carnation Flower Box" class="slide">
+    </div>
+    <button class="carousel-btn prev">&lt;</button>
+    <button class="carousel-btn next">&gt;</button>
+  </section>
+
+  <!-- 商品列表 -->
+  <section class="product-section">
+    <div class="container">
+      <h2>热门鲜花推荐</h2>
+      <div class="product-grid">
+        <!-- 商品卡片1 -->
+        <div class="product-card">
+          <img src="images/rose.jpg" alt="Red Rose Gift Box" class="product-img">
+          <h3>Beloved Red Rose Gift Box</h3>
+          <p>11 premium red roses, adorned with baby's breath</p>
+          <span class="price">¥199</span>
+          <a href="pages/detail.html?id=1" class="btn">View details</a>
+        </div>
+        <!-- 商品卡片2 -->
+        <div class="product-card">
+          <img src="images/lily.jpg" alt="Bouquet of Perfume Lilies" class="product-img">
+          <h3></h3>Perfume lily bouquet
+          <p>6 multi-headed perfume lilies, fresh and elegant</p>
+          <span class="price">¥169</span>
+          <a href="pages/detail.html?id=2" class="btn">View details</a>
+        </div>
+        <!-- 商品卡片3 -->
+        <div class="product-card">
+          <img src="images/sunflower.jpg" alt="Sunflower bouquet" class="product-img">
+          <h3>Sunshine Sunflower Bouquet</h3>
+          <p>5 sunflowers, paired with eucalyptus leaves</p>
+          <span class="price">¥129</span>
+          <a href="pages/detail.html?id=3" class="btn">View details</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 底部 -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Huayang Praise Flower Gift Shop - Delivering beauty for you</p>
+    </div>
+  </footer>
+
   <script src="js/main.js"></script>
 </body>
 </html>
