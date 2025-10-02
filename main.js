@@ -30,3 +30,27 @@ setInterval(() => goToSlide(currentIndex + 1), 5000);
 setInterval(() => {
   document.querySelector('.next').click();
 }, 5000);
+
+
+
+
+//Add filtering logic.
+
+const filterBtns = document.querySelectorAll('.filter-btn');
+const productCards = document.querySelectorAll('.product-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    const category = btn.dataset.category;
+    productCards.forEach(card => {
+      if (category === 'all' || card.dataset.category === category) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
