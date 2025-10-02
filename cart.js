@@ -40,3 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('Checkout feature is under development. Stay tuned!');
   });
 });
+
+
+
+
+
+// Adjustment of the number of items in the shopping cart
+document.addEventListener('DOMContentLoaded', () => {
+  const quantityInputs = document.querySelectorAll('.quantity input');
+  quantityInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      const price = input.closest('.cart-item-info').querySelector('span').textContent;
+      const total = document.querySelector('.total-price');
+      //The total price calculation logic can be improved here according to actual needs.
+      total.textContent = price; 
+    });
+  });
+});
