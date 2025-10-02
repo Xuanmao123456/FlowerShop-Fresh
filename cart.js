@@ -57,3 +57,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const quantityInputs = document.querySelectorAll('.quantity input');
+  quantityInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      const price = input.closest('.cart-item-info').querySelector('span').textContent;
+      const total = document.querySelector('.total-price');
+      total.textContent = price; // The total price calculation can be refined according to actual needs.
+    });
+  });
+});
