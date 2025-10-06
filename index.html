@@ -4,7 +4,212 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Huayang Praise - Flower Gift Shop</title>
-  <link rel="stylesheet" href="css/style.css">
+  <!-- 1. 引入 Swiper 插件的 CSS（确保文件路径正确） -->
+  <link rel="stylesheet" href="swiper-bundle.min.css">
+  <!-- 2. 自定义样式（控制轮播尺寸、页面整体风格） -->
+  <style>
+    /* 页面基础重置 */
+    html,
+    body {
+      position: relative;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    /* ========== Swiper 轮播核心样式 ========== */
+    .swiper-container {
+      width: 100%;
+      max-width: 1200px; /* 限制轮播最大宽度，避免过宽 */
+      height: 500px;     /* 调整为“长宽适中的长方形”高度 */
+      margin: 20px auto; /* 上下留空 + 水平居中 */
+    }
+    .swiper-slide {
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* 保持图片比例，填充轮播容器 */
+    }
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.8); /* 指示器默认半透明白色 */
+    }
+    .swiper-pagination-bullet-active {
+      background: #e94b3c; /* 激活态指示器用品牌色（可自定义） */
+    }
+
+    /* ========== 导航栏样式 ========== */
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 15px 0;
+    }
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 24px;
+      color: #e94b3c; /* 品牌色 */
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    .nav-links li {
+      margin-left: 25px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: #e94b3c;
+    }
+    .cart-icon {
+      text-decoration: none;
+      color: #333;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+    .cart-icon:hover {
+      color: #e94b3c;
+    }
+
+    /* ========== 筛选按钮样式 ========== */
+    .filter-buttons {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .filter-btn {
+      padding: 8px 16px;
+      margin: 0 5px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background-color: #e94b3c;
+      color: white;
+      border-color: #e94b3c;
+    }
+
+    /* ========== 商品列表样式 ========== */
+    .product-section {
+      padding: 50px 0;
+    }
+    .product-section h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 28px;
+      color: #333;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .product-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      padding-bottom: 15px;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+    .product-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .product-card h3 {
+      padding: 15px;
+      font-size: 20px;
+      margin: 0;
+    }
+    .product-card p {
+      padding: 0 15px 10px;
+      color: #666;
+      font-size: 14px;
+    }
+    .price {
+      display: block;
+      padding: 0 15px 10px;
+      font-size: 20px;
+      color: #e94b3c;
+      font-weight: bold;
+    }
+    .btn {
+      display: block;
+      width: calc(100% - 30px);
+      margin: 0 15px;
+      padding: 10px;
+      background-color: #e94b3c;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      border-radius: 4px;
+    }
+    .btn:hover {
+      background-color: #c9302c;
+    }
+
+    /* ========== 页脚样式 ========== */
+    .footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    /* ========== 收藏按钮样式 ========== */
+    .favorite-btn {
+      margin: 10px 15px;
+      padding: 5px 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+    .favorite-btn.active .icon {
+      color: #e94b3c;
+    }
+    .favorite-btn:hover {
+      background-color: #f5f5f5;
+    }
+    .favorite-btn.active {
+      background-color: #f0f0f0;
+      border-color: #999;
+    }
+  </style>
 </head>
 <body>
   <!-- 导航栏 -->
@@ -23,16 +228,34 @@
     </div>
   </header>
 
-  <!-- 轮播图 -->
-  <section class="carousel">
-    <div class="carousel-wrapper">
-      <img src="images/slide1.jpg" alt="Romantic Rose Gift Box" class="slide active">
-      <img src="images/slide2.jpg" alt="Fresh Lily Bouquet" class="slide">
-      <img src="images/slide3.jpg" alt="Holiday Carnation Flower Box" class="slide">
+  <!-- Swiper 轮播图（核心区域） -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <!-- 轮播项：每张图片对应一个 swiper-slide -->
+      <div class="swiper-slide">
+        <img src="images/玫瑰.jpg" alt="Romantic Rose Gift Box">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/百合.jpg" alt="Fresh Lily Bouquet">
+      </div>
+      <div class="swiper-slide">
+        <img src="images/康乃馨.jpg" alt="Holiday Carnation Flower Box">
+      </div>
     </div>
-    <button class="carousel-btn prev">&lt;</button>
-    <button class="carousel-btn next">&gt;</button>
-  </section>
+    <!-- 轮播指示器（分页器） -->
+    <div class="swiper-pagination"></div>
+    <!-- 左右切换箭头（可选，如需显示则保留） -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+
+  <!-- 筛选按钮 -->
+  <div class="filter-buttons">
+    <button class="filter-btn active" data-category="all">All</button>
+    <button class="filter-btn" data-category="rose">Rose</button>
+    <button class="filter-btn" data-category="lily">Lily</button>
+    <button class="filter-btn" data-category="sunflower">Sunflower</button>
+  </div>
 
   <!-- 商品列表 -->
   <section class="product-section">
@@ -40,27 +263,41 @@
       <h2>热门鲜花推荐</h2>
       <div class="product-grid">
         <!-- 商品卡片1 -->
-        <div class="product-card">
-          <img src="images/rose.jpg" alt="Red Rose Gift Box" class="product-img">
+        <div class="product-card" data-product-id="1">
+          <img src="images/1668955882871207..jpg" alt="Red Rose Gift Box" class="product-img">
           <h3>Beloved Red Rose Gift Box</h3>
           <p>11 premium red roses, adorned with baby's breath</p>
           <span class="price">¥199</span>
+          <button class="favorite-btn" data-product-id="1">
+            <span class="icon">☆</span>
+            <span class="text">Favorite</span>
+          </button>
           <a href="pages/detail.html?id=1" class="btn">View details</a>
         </div>
+        
         <!-- 商品卡片2 -->
-        <div class="product-card">
+        <div class="product-card" data-product-id="2">
           <img src="images/lily.jpg" alt="Bouquet of Perfume Lilies" class="product-img">
-          <h3></h3>Perfume lily bouquet
+          <h3>Perfume lily bouquet</h3>
           <p>6 multi-headed perfume lilies, fresh and elegant</p>
           <span class="price">¥169</span>
+          <button class="favorite-btn" data-product-id="2">
+            <span class="icon">☆</span>
+            <span class="text">Favorite</span>
+          </button>
           <a href="pages/detail.html?id=2" class="btn">View details</a>
         </div>
+        
         <!-- 商品卡片3 -->
-        <div class="product-card">
+        <div class="product-card" data-product-id="3">
           <img src="images/sunflower.jpg" alt="Sunflower bouquet" class="product-img">
           <h3>Sunshine Sunflower Bouquet</h3>
           <p>5 sunflowers, paired with eucalyptus leaves</p>
           <span class="price">¥129</span>
+          <button class="favorite-btn" data-product-id="3">
+            <span class="icon">☆</span>
+            <span class="text">Favorite</span>
+          </button>
           <a href="pages/detail.html?id=3" class="btn">View details</a>
         </div>
       </div>
@@ -74,16 +311,31 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <!-- 3. 引入 Swiper 插件的 JS（确保文件路径正确） -->
+  <script src="swiper-bundle.min.js"></script>
+  <!-- 4. 引入收藏功能等业务 JS -->
+  <script src="js/favorite.js"></script>
+  <!-- 5. 初始化 Swiper 轮播 -->
+  <script>
+    var swiper = new Swiper(".swiper-container", {
+      // 分页器（指示器）配置
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true, // 允许点击指示器切换轮播
+      },
+      // 左右箭头配置（如需显示箭头则保留）
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      // 自动轮播配置
+      autoplay: {
+        delay: 3000, // 每 3 秒自动切换一次
+        disableOnInteraction: false, // 交互（点击/滑动）后不停止自动轮播
+      },
+      // 循环播放（轮播到最后一张后，自动回到第一张）
+      loop: true,
+    });
+  </script>
 </body>
 </html>
-
-
-
- <!-- Add a filter button to the product list. -->
-<div class="filter-buttons">
-  <button class="filter-btn active" data-category="all">All</button>
-  <button class="filter-btn" data-category="rose">Rose</button>
-  <button class="filter-btn" data-category="lily">Lily</button>
-  <button class="filter-btn" data-category="sunflower">Sunflower</button>
-</div>
