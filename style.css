@@ -9,7 +9,7 @@
 body {
   line-height: 1.6;
   color: #333;
-  background-color: #f9f9f9;
+  background-color: #e3f77f;
 }
 
 .container {
@@ -71,43 +71,85 @@ body {
 .carousel {
   position: relative;
   width: 100%;
-  height: 500px;
+  max-width: 1200px;
+  margin: 20px auto;
   overflow: hidden;
+  height: 500px; /* 固定轮播图高度 */
 }
-
 .carousel-wrapper {
-  width: 100%;
-  height: 100%;
   display: flex;
-  transition: transform 0.5s ease-in-out;
+  width: 300%; 
+  height: 100%;
+  transition: transform 0.5s ease;
+  flex-direction: row;
 }
 
 .slide {
-  min-width: 100%;
+  width: 33.333%; /* 每张图占1/3宽度 */
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* 确保图片按比例缩放并填满容器 */
+  flex-shrink: 0; /* 防止图片被压缩 */
 }
 
 .carousel-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.7);
   border: none;
-  font-size: 24px;
   cursor: pointer;
+  font-size: 20px;
+  z-index: 10;
+}
+.carousel-btn.prev { left: 10px; }
+.carousel-btn.next { right: 10px; }
+
+/* 轮播指示器样式 */
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
   z-index: 10;
 }
 
-.prev {
-  left: 20px;
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-.next {
-  right: 20px;
+.indicator.active {
+  background: #e94b3c; /* 激活状态用品牌色 */
+}
+
+/* 筛选按钮样式 */
+.filter-buttons {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  margin: 0 5px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filter-btn.active {
+  background-color: #e94b3c;
+  color: white;
+  border-color: #e94b3c;
 }
 
 /* 商品列表样式 */
@@ -134,6 +176,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s, box-shadow 0.3s;
+  padding-bottom: 15px;
 }
 
 .product-card:hover {
@@ -144,7 +187,7 @@ body {
 .product-img {
   width: 100%;
   height: 200px;
-  object-fit: cover;
+  object-fit: cover; /* 确保商品图大小一致 */
 }
 
 .product-card h3 {
@@ -169,7 +212,8 @@ body {
 
 .btn {
   display: block;
-  width: 100%;
+  width: calc(100% - 30px);
+  margin: 0 15px;
   padding: 10px;
   background-color: #e94b3c;
   color: #fff;
@@ -178,6 +222,7 @@ body {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-radius: 4px;
 }
 
 .btn:hover {
@@ -190,4 +235,34 @@ body {
   color: #fff;
   padding: 20px 0;
   text-align: center;
+  margin-top: 50px;
+}
+
+/* 收藏按钮样式 */
+.favorite-btn {
+  margin: 10px 15px;
+  padding: 5px 10px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s;
+}
+
+.favorite-btn.active .icon {
+  color: #e94b3c;
+}
+
+.favorite-btn:hover {
+  background-color: #f5f5f5;
+}
+/* 收藏状态样式 */
+.favorite-btn.active {
+  background-color: #f0f0f0;
+  border-color: #999;
+}
+
+.favorite-btn:hover {
+  background-color: #f5f5f5;
 }
